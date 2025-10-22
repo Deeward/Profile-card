@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Card Component</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #4a6fa5;
+            --secondary-color: #6b8cbc;
+            --accent-color: #ff6b6b;
+            --text-color: #333;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --border-radius: 12px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        /* Profile Card Styles */
+        article[data-testid="test-profile-card"] {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            max-width: 450px;
+            width: 100%;
+            overflow: hidden;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        article[data-testid="test-profile-card"]:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .profile-header {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            padding: 2rem 1rem;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        figure {
+            margin: 0 auto 1rem;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid white;
+            overflow: hidden;
+            background-color: #ddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        img[data-testid="test-user-avatar"] {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        h2[data-testid="test-user-name"] {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .profile-title {
+            font-size: 1rem;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+
+        .profile-body {
+            padding: 1.5rem;
+        }
+
+        p[data-testid="test-user-bio"] {
+            margin-bottom: 1.5rem;
+            text-align: center;
+            color: var(--dark-color);
+        }
+
+        .current-time {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            padding: 0.75rem;
+            background-color: #f8f9fa;
+            border-radius: 6px;
+            font-family: monospace;
+        }
+
+        .social-section {
+            margin-bottom: 1.5rem;
+        }
+
+        h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            color: var(--primary-color);
+        }
+
+        nav[data-testid="test-user-social-links"] ul {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            list-style: none;
+        }
+
+        nav[data-testid="test-user-social-links"] a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        nav[data-testid="test-user-social-links"] a:hover,
+        nav[data-testid="test-user-social-links"] a:focus {
+            background-color: var(--secondary-color);
+            transform: scale(1.1);
+        }
+
+        .hobbies-dislikes {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        section[data-testid="test-user-hobbies"],
+        section[data-testid="test-user-dislikes"] {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+        }
+
+        ul {
+            list-style-position: inside;
+            padding-left: 0.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Focus styles for accessibility */
+        button:focus, a:focus {
+            outline: 2px solid var(--accent-color);
+            outline-offset: 2px;
+        }
+        
+
+        /* Responsive Design */
+        @media (max-width: 480px) {
+            .hobbies-dislikes {
+                grid-template-columns: 1fr;
+            }
+            
+            nav[data-testid="test-user-social-links"] ul {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <article data-testid="test-profile-card">
+            <header class="profile-header">    
+        
+                </button>
+                <figure>
+                    <img src="C:\Users\USER\Documents\my pic.jpg"
+                         alt="Profile picture of Alex Johnson" 
+                         data-testid="test-user-avatar">
+                </figure>
+                <h2 data-testid="test-user-name">Alex Johnson</h2>
+                <p class="profile-title">Frontend Developer</p>
+            </header>
+            
+            <div class="profile-body">
+                <p data-testid="test-user-bio">
+                    Passionate about creating accessible, responsive web experiences. 
+                    Lover of clean code and user-centered design. Currently working on improving web accessibility standards.
+                </p>
+                
+                <div class="current-time">
+                    <strong>Current Time (ms):</strong> 
+                    <span data-testid="test-user-time">0</span>
+                </div>
+                
+                <div class="social-section">
+                    <h3>Connect with me</h3>
+                    <nav data-testid="test-user-social-links" aria-label="Social media links">
+                        <ul>
+                            <li>
+                                <a href="https://twitter.com" 
+                                   data-testid="test-user-social-twitter"
+                                   aria-label="Twitter profile">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://github.com" 
+                                   data-testid="test-user-social-github"
+                                   aria-label="GitHub profile">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://linkedin.com" 
+                                   data-testid="test-user-social-linkedin"
+                                   aria-label="LinkedIn profile">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://instagram.com" 
+                                   data-testid="test-user-social-instagram"
+                                   aria-label="Instagram profile">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                
+                <div class="hobbies-dislikes">
+                    <section data-testid="test-user-hobbies">
+                        <h3>Hobbies</h3>
+                        <ul>
+                            <li>Hiking & Nature Photography</li>
+                            <li>Playing Guitar</li>
+                            <li>Open Source Contributions</li>
+                            <li>3D Printing</li>
+                            <li>Board Games</li>
+                        </ul>
+                    </section>
+                    
+                    <section data-testid="test-user-dislikes">
+                        <h3>Dislikes</h3>
+                        <ul>
+                            <li>Inaccessible Websites</li>
+                            <li>Poor Documentation</li>
+                            <li>Traffic Jams</li>
+                            <li>Overly Complicated UI</li>
+                            <li>Coffee Without Cream</li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <script>
+        // Update current time in milliseconds
+        function updateTime() {
+            const timeElement = document.querySelector('[data-testid="test-user-time"]');
+            timeElement.textContent = Date.now();
+        }
+
+        
+        // Update time immediately and then every 100ms
+        updateTime();
+        setInterval(updateTime, 100);
+        
+        // Add keyboard navigation support
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                // Ensure focus is visible for all interactive elements
+                const focusableElements = document.querySelectorAll('a, button, [tabindex]');
+                focusableElements.forEach(el => {
+                    el.addEventListener('focus', () => {
+                        el.style.outline = '2px solid #ff6b6b';
+                        el.style.outlineOffset = '2px';
+                    });
+                    el.addEventListener('blur', () => {
+                        el.style.outline = '';
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
