@@ -1,0 +1,539 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio | Contact & About</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #34495e;
+            --success-color: #2ecc71;
+            --error-color: #e74c3c;
+            --text-color: #333;
+            --text-light: #7f8c8d;
+            --border-radius: 4px;
+            --transition: all 0.3s ease;
+            --shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f9f9f9;
+        }
+        
+        /* Header and Navigation */
+        header {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover, 
+        .nav-links a:focus {
+            background-color: var(--primary-color);
+        }
+        
+        .nav-links a.active {
+            background-color: var(--primary-color);
+        }
+        
+        /* Main content */
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        
+        h1 {
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+        }
+        
+        h2 {
+            color: var(--primary-color);
+            margin: 2rem 0 1rem;
+            font-size: 1.8rem;
+        }
+        
+        h3 {
+            color: var(--dark-color);
+            margin: 1.5rem 0 0.5rem;
+            font-size: 1.3rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        /* Form styles */
+        .contact-form {
+            background-color: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+        
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        button:hover, button:focus {
+            background-color: #2980b9;
+        }
+        
+        /* Error and success messages */
+        .error-message {
+            color: var(--error-color);
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+        
+        .success-message {
+            background-color: var(--success-color);
+            color: white;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 1.5rem;
+            display: none;
+        }
+        
+        .form-group.error input,
+        .form-group.error textarea,
+        .form-group.error select {
+            border-color: var(--error-color);
+        }
+        
+        .form-group.error .error-message {
+            display: block;
+        }
+        
+        /* About page sections */
+        .about-section {
+            background-color: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+        
+        ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .contact-form, .about-section {
+                padding: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .nav-links {
+                flex-direction: column;
+                gap: 0.5rem;
+                width: 100%;
+            }
+            
+            .nav-links a {
+                display: block;
+                text-align: center;
+            }
+            
+            main {
+                padding: 0 1rem;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .contact-form, .about-section {
+                padding: 1rem;
+            }
+        }
+        
+        /* Skip link for accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary-color);
+            color: white;
+            padding: 8px;
+            z-index: 100;
+            text-decoration: none;
+            border-radius: 0 0 4px 0;
+        }
+        
+        .skip-link:focus {
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip link for keyboard users -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <header>
+        <nav>
+            <div class="logo">My Portfolio</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" class="active">About Me</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- About Me Page -->
+    <main id="main-content" data-testid="test-about-page">
+        <h1>About Me</h1>
+        
+        <section class="about-section" data-testid="test-about-bio">
+            <h2>Bio</h2>
+            <p>Hello! I'm a passionate web developer with a strong interest in creating accessible, responsive, and user-friendly web experiences. I've been working in the tech industry for several years, constantly learning and adapting to new technologies and methodologies.</p>
+            <p>My journey in web development started during my college years when I built my first website. Since then, I've been fascinated by the power of code to create meaningful digital experiences that can impact people's lives.</p>
+        </section>
+        
+        <section class="about-section" data-testid="test-about-goals">
+            <h2>Goals in This Program</h2>
+            <p>Through this program, I aim to:</p>
+            <ul>
+                <li>Strengthen my understanding of modern web development practices</li>
+                <li>Improve my skills in creating accessible web applications</li>
+                <li>Master responsive design techniques for various devices</li>
+                <li>Learn best practices for performance optimization</li>
+                <li>Develop a more systematic approach to testing and debugging</li>
+                <li>Build a portfolio of projects that demonstrate my capabilities</li>
+            </ul>
+        </section>
+        
+        <section class="about-section" data-testid="test-about-confidence">
+            <h2>Areas of Low Confidence</h2>
+            <p>While I'm comfortable with many aspects of web development, there are areas where I'd like to build more confidence:</p>
+            <ul>
+                <li>Advanced CSS animations and transitions</li>
+                <li>Complex state management in large applications</li>
+                <li>Performance optimization for high-traffic websites</li>
+                <li>Accessibility testing with screen readers and other assistive technologies</li>
+                <li>Advanced Git workflows and team collaboration strategies</li>
+            </ul>
+            <p>I'm actively working on these areas through practice, research, and seeking feedback from more experienced developers.</p>
+        </section>
+        
+        <section class="about-section" data-testid="test-about-future-note">
+            <h2>Note to Future Self</h2>
+            <p>Remember why you started this journey. The challenges you face today are opportunities for growth tomorrow. Stay curious, keep learning, and don't be afraid to ask for help when needed.</p>
+            <p>Always prioritize creating inclusive experiences that everyone can use, regardless of their abilities or circumstances. The web should be for everyone, and you have a role to play in making that vision a reality.</p>
+            <p>Celebrate your progress, no matter how small. Each line of code, each solved bug, and each completed project brings you closer to your goals.</p>
+        </section>
+        
+        <section class="about-section" data-testid="test-about-extra">
+            <h2>Extra Thoughts</h2>
+            <p>Web development is not just about writing code; it's about solving problems and creating value for users. The most beautiful code is useless if it doesn't serve a purpose or meet user needs.</p>
+            <p>I believe in the importance of continuous learning in this field. Technologies evolve rapidly, and staying current requires dedication and curiosity. The moment we stop learning is the moment we become obsolete.</p>
+            <p>Collaboration and community are essential. Some of my most significant growth moments have come from working with others, receiving feedback, and learning from different perspectives.</p>
+        </section>
+    </main>
+
+    <!-- Contact Us Page (hidden by default, would be on a separate page in a real implementation) -->
+    <main id="contact-content" style="display: none;" data-testid="test-contact-page">
+        <h1>Contact Us</h1>
+        
+        <div class="success-message" data-testid="test-contact-success">
+            Thank you for your message! We'll get back to you soon.
+        </div>
+        
+        <form class="contact-form" id="contact-form" novalidate>
+            <div class="form-group">
+                <label for="full-name">Full Name *</label>
+                <input type="text" id="full-name" name="full-name" data-testid="test-contact-name" required aria-describedby="name-error">
+                <div class="error-message" id="name-error" data-testid="test-contact-error-name">Please enter your full name</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" data-testid="test-contact-email" required aria-describedby="email-error">
+                <div class="error-message" id="email-error" data-testid="test-contact-error-email">Please enter a valid email address</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="subject">Subject *</label>
+                <input type="text" id="subject" name="subject" data-testid="test-contact-subject" required aria-describedby="subject-error">
+                <div class="error-message" id="subject-error" data-testid="test-contact-error-subject">Please enter a subject</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="message">Message *</label>
+                <textarea id="message" name="message" data-testid="test-contact-message" required minlength="10" aria-describedby="message-error"></textarea>
+                <div class="error-message" id="message-error" data-testid="test-contact-error-message">Please enter a message with at least 10 characters</div>
+            </div>
+            
+            <button type="submit" data-testid="test-contact-submit">Send Message</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 My Portfolio. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Form validation
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.getElementById('contact-form');
+            const successMessage = document.querySelector('[data-testid="test-contact-success"]');
+            
+            if (contactForm) {
+                // Form validation function
+                function validateForm() {
+                    let isValid = true;
+                    
+                    // Validate name
+                    const nameInput = document.querySelector('[data-testid="test-contact-name"]');
+                    const nameError = document.querySelector('[data-testid="test-contact-error-name"]');
+                    if (!nameInput.value.trim()) {
+                        nameInput.parentElement.classList.add('error');
+                        isValid = false;
+                    } else {
+                        nameInput.parentElement.classList.remove('error');
+                    }
+                    
+                    // Validate email
+                    const emailInput = document.querySelector('[data-testid="test-contact-email"]');
+                    const emailError = document.querySelector('[data-testid="test-contact-error-email"]');
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailInput.value.trim() || !emailRegex.test(emailInput.value)) {
+                        emailInput.parentElement.classList.add('error');
+                        isValid = false;
+                    } else {
+                        emailInput.parentElement.classList.remove('error');
+                    }
+                    
+                    // Validate subject
+                    const subjectInput = document.querySelector('[data-testid="test-contact-subject"]');
+                    const subjectError = document.querySelector('[data-testid="test-contact-error-subject"]');
+                    if (!subjectInput.value.trim()) {
+                        subjectInput.parentElement.classList.add('error');
+                        isValid = false;
+                    } else {
+                        subjectInput.parentElement.classList.remove('error');
+                    }
+                    
+                    // Validate message
+                    const messageInput = document.querySelector('[data-testid="test-contact-message"]');
+                    const messageError = document.querySelector('[data-testid="test-contact-error-message"]');
+                    if (!messageInput.value.trim() || messageInput.value.length < 10) {
+                        messageInput.parentElement.classList.add('error');
+                        isValid = false;
+                    } else {
+                        messageInput.parentElement.classList.remove('error');
+                    }
+                    
+                    return isValid;
+                }
+                
+                // Real-time validation
+                const inputs = contactForm.querySelectorAll('input, textarea');
+                inputs.forEach(input => {
+                    input.addEventListener('blur', function() {
+                        validateField(this);
+                    });
+                    
+                    input.addEventListener('input', function() {
+                        if (this.parentElement.classList.contains('error')) {
+                            validateField(this);
+                        }
+                    });
+                });
+                
+                function validateField(field) {
+                    const fieldType = field.getAttribute('data-testid');
+                    
+                    if (fieldType === 'test-contact-name' || fieldType === 'test-contact-subject') {
+                        if (!field.value.trim()) {
+                            field.parentElement.classList.add('error');
+                        } else {
+                            field.parentElement.classList.remove('error');
+                        }
+                    }
+                    
+                    if (fieldType === 'test-contact-email') {
+                        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        if (!field.value.trim() || !emailRegex.test(field.value)) {
+                            field.parentElement.classList.add('error');
+                        } else {
+                            field.parentElement.classList.remove('error');
+                        }
+                    }
+                    
+                    if (fieldType === 'test-contact-message') {
+                        if (!field.value.trim() || field.value.length < 10) {
+                            field.parentElement.classList.add('error');
+                        } else {
+                            field.parentElement.classList.remove('error');
+                        }
+                    }
+                }
+                
+                // Form submission
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    if (validateForm()) {
+                        // In a real application, you would send the form data to a server here
+                        // For demonstration, we'll just show the success message
+                        successMessage.style.display = 'block';
+                        contactForm.reset();
+                        
+                        // Scroll to the success message
+                        successMessage.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            }
+            
+            // Simple navigation simulation
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all links
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    
+                    // Add active class to clicked link
+                    this.classList.add('active');
+                    
+                    // Show appropriate content
+                    const target = this.getAttribute('href');
+                    if (target === 'about.html') {
+                        document.getElementById('main-content').style.display = 'block';
+                        document.getElementById('contact-content').style.display = 'none';
+                    } else if (target === 'contact.html') {
+                        document.getElementById('main-content').style.display = 'none';
+                        document.getElementById('contact-content').style.display = 'block';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
